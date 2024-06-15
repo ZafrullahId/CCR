@@ -1,0 +1,49 @@
+﻿@using CCR.Services
+@model IEnumerable<ComprehensiveView>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<h2>HTML Table</h2>
+
+<table>
+    <tr>
+        <th>Settlement Naration</th>
+        <th>Amount</th>
+        <th>Action</th>
+    </tr>
+    @if(Model != null)
+    {
+        @foreach (var settlement in Model)
+        {
+            <tr>
+                <td>@settlement.SettlementNarration</td>
+                <td>@settlement.Amount</td>
+                <td><input type="button" name="name" value="Upload Computation" class="btn btn-outline-success" /></td>
+            </tr>
+        }
+    }
+
+</table>
+<br />
+
+<form method="post" asp-action="Comprehensive" enctype="multipart/form-data">
+    <input type="file" for="file" name="file" placeholder="Upload Comprehensive" />
+     <button asp-action="Comprehensive" asp-controller="home" class="btn btn-secondary" type="submit">SUBMIT</button>
+</form>
+
+
